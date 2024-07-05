@@ -15,7 +15,8 @@ FLUSH PRIVILEGES;
 
 in case of problems with restoring db dumps:
 
-# Row size too large (> 8126). Changing some columns to TEXT or BLOB may help. In current row format, BLOB prefix of 0 bytes is stored inline.
+Row size too large (> 8126).
+Changing some columns to TEXT or BLOB may help. In current row format, BLOB prefix of 0 bytes is stored inline.
 
 use {site}_data;
 SET GLOBAL innodb_strict_mode=OFF;
