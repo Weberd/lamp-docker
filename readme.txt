@@ -24,11 +24,6 @@ SET SESSION innodb_strict_mode=OFF;
 add site host names to hosts file:
 for example:
 
-127.0.0.1 salida-dev.loc
-127.0.0.1 bedford-dev.loc
+127.0.0.1 test-dev.loc
 
-and access different sites using urls like http://salida-dev.loc
-
-# todo:
-# - php 7.3 for MRNexus
-# - SSL module for apache
+and access different sites using urls like http://test-dev.loc
