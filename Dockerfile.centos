@@ -14,8 +14,6 @@ RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 RUN yum-config-manager --enable remi-php56
 RUN yum install -y php php-devel php-pear php-mysqli php-xdebug
 
-#php 7.3 for MRNexus
-
 # Add Xdebug to PHP configuration
 RUN echo "" >> /etc/php.ini \
  && echo "[xdebug]" >> /etc/php.ini \
