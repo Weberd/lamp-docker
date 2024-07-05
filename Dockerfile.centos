@@ -1,0 +1,33 @@
+FROM centos:7.7.1908
+
+# pm2
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+RUN yum install -y yum-utils vim make nodejs
+RUN npm install pm2 -g
+
+#Apache/2.4.6
+RUN yum -y install httpd httpd-tools
+
+#php 5.6
+RUN yum install -y epel-release
+RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+RUN yum-config-manager --enable remi-php56
+RUN yum install -y php php-devel php-pear php-mysqli php-xdebug
+
+#php 7.3 for MRNexus
+
+# Add Xdebug to PHP configuration
+RUN echo "" >> /etc/php.ini \
+ && echo "[xdebug]" >> /etc/php.ini \
+ && echo "zend_extension = /usr/lib64/php/modules/xdebug.so" >> /etc/php.ini \
+ && echo "xdebug.remote_enable = 1" >> /etc/php.ini \
+ && echo "xdebug.remote_autostart = 1" >> /etc/php.ini \
+ && echo "xdebug.remote_host = host.docker.internal" >> /etc/php.ini
+
+RUN echo "ServerName 127.0.0.1" >> /etc/httpd/conf/httpd.conf
+
+COPY process.yml /etc/process.yml
+COPY configs/ /etc/httpd/conf.d/
+COPY php-overrides.ini /etc/php.d/
+
+CMD ["pm2-runtime", "/etc/process.yml"]
