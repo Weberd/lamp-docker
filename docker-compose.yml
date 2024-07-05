@@ -21,7 +21,6 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /mnt/c/Users/Omen/PhpstormProjects/salida_mr:/var/www/salida_mr
-      - /mnt/c/Users/Omen/PhpstormProjects/bedford:/var/www/bedford
+      - /mnt/test_mr:/var/www/test_mr
 volumes:
   db_data:
